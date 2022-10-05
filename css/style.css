@@ -34,7 +34,7 @@ body {
   -ms-flex-align: center;
   align-items: center;
   height: 100vh;
-  padding: 2rem;
+  padding: 1rem;
   font-size: 1rem;
   font-family: sans-serif;
 }
@@ -50,24 +50,79 @@ ul {
 }
 
 .main {
-  display: -moz-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
   width: 100%;
 }
 
-.weather {
-  -moz-box-flex: 0;
-  -webkit-box-flex: 0;
-  -webkit-flex: 0 0 50%;
-  -ms-flex: 0 0 50%;
-  flex: 0 0 50%;
-  max-width: 50%;
+.weather__current .slot {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.weather__current .weather__icon {
+  margin-right: 2rem;
+  font-size: 7.5rem;
+  text-align: center;
+}
+
+.weather__current .weather__temperature {
+  font-size: 2.5rem;
+}
+
+.weather__forecast .slot {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -moz-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.weather__forecast .slot li {
+  margin-right: 1rem;
+}
+
+.weather__forecast .weather__icon {
+  font-size: 3.5rem;
+  text-align: center;
+}
+
+.weather__forecast .weather__temperature {
+  font-size: 1.25rem;
+  text-align: right;
+}
+
+.weather__forecast .weather__temperature-high {
+  font-weight: bold;
+}
+
+.datetime {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .datetime .slot {
@@ -95,14 +150,4 @@ ul {
 .datetime__date {
   margin-left: 0.5rem;
   font-size: 1.25rem;
-}
-
-.scenes,
-.switches {
-  -webkit-box-flex: 0;
-  -webkit-flex: 0 0 50%;
-     -moz-box-flex: 0;
-      -ms-flex: 0 0 50%;
-          flex: 0 0 50%;
-  max-width: 50%;
 }

@@ -26,7 +26,7 @@
 
     <section id="weather" class="weather">
 
-      <div id="weather-current">
+      <div id="weather-current" class="weather__current">
         <div class="slot"></div>
         <template id="weather-current-template">
           <% if (data) { %>
@@ -40,7 +40,7 @@
         </template>
       </div>
 
-      <div id="weather-forecast">
+      <div id="weather-forecast" class="weather__forecast">
         <ul class="slot"></ul>
         <template id="weather-forecast-template">
           <% if (data) { %>
@@ -50,7 +50,7 @@
                   <i class="mdi mdi-weather-<%= data.icon %>"></i>
                 </div>
                 <div class="weather__temperature">
-                  <div class="weather__temperature">
+                  <div class="weather__temperature-high">
                     <%= data.temperature %> °C
                   </div>
                   <div class="weather__temperature-low">
