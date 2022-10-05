@@ -1,29 +1,37 @@
-fetch("/config.json")
-  .then(function (text) {
-    return text.json();
-  })
-  .then(function (json) {
-    window.homeAssistantAccessToken = json.home_assistant_access_token;
-    window.homeAssistantUrl = json.home_assistant_url;
-
-    fetch(window.homeAssistantUrl + "/api/states", {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + window.homeAssistantAccessToken,
-        "Content-Type": "application/json",
-      },
+function renderData() {
+  fetch("/config.json")
+    .then(function (text) {
+      return text.json();
     })
-      .then(function (text) {
-        return text.json();
+    .then(function (json) {
+      window.homeAssistantAccessToken = json.home_assistant_access_token;
+      window.homeAssistantUrl = json.home_assistant_url;
+
+      fetch(window.homeAssistantUrl + "/api/states", {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + window.homeAssistantAccessToken,
+          "Content-Type": "application/json",
+        },
       })
-      .then(function (states) {
-        console.log(states);
-        addDateTime();
-        addWeather(states);
-        addScenes(states);
-        addSwitches(states);
-      });
-  });
+        .then(function (text) {
+          return text.json();
+        })
+        .then(function (states) {
+          console.log(states);
+          addDateTime();
+          addWeather(states);
+          addScenes(states);
+          addSwitches(states);
+        });
+    });
+}
+
+renderData();
+
+setInterval(function () {
+  renderData();
+}, 60000);
 
 function addSwitches(states) {
   var switches = states
