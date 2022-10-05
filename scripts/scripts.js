@@ -122,14 +122,14 @@ function addSwitches(states) {
       checkbox.checked = true;
     }
 
-    checkbox.addEventListener("click", function (e) {
+    checkbox.addEventListener("change", function (e) {
       fetch(window.homeAssistantUrl + "/api/services/switch/toggle", {
         method: "POST",
         headers: {
           Authorization: "Bearer " + window.homeAssistantAccessToken,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ entity_id: e.target.value }),
+        body: JSON.stringify({ entity_id: e.currentTarget.value }),
       });
     });
   }
@@ -176,7 +176,7 @@ function addScenes(states) {
           Authorization: "Bearer " + window.homeAssistantAccessToken,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ entity_id: e.target.value }),
+        body: JSON.stringify({ entity_id: e.currentTarget.value }),
       }).then(function () {
         setTimeout(function () {
           fetch(window.homeAssistantUrl + "/api/states", {
