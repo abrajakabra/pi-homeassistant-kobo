@@ -18,7 +18,6 @@ function renderData() {
           return text.json();
         })
         .then(function (states) {
-          console.log(states);
           addDateTime();
           addWeather(states);
           addScenes(states);
