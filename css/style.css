@@ -6,9 +6,15 @@
   padding: 0;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 html {
   height: 100vh;
   width: 100vw;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   overflow: hidden;
   font-size: 100%;
 }
@@ -42,6 +48,8 @@ body {
   font-size: 1rem;
   font-family: sans-serif;
   overflow: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 h1 {
