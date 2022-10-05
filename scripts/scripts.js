@@ -205,17 +205,42 @@ function addDateTime() {
   var dateTimeEl = document.querySelector("#datetime");
 
   var currentDate = new Date();
-  var currentDateString = currentDate.toLocaleDateString("de-DE", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
 
-  var currentTimeString = currentDate.toLocaleString("de-DE", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
+  var weekdays = [
+    "Sonntag",
+    "Montag",
+    "Dienstag",
+    "Mittwoch",
+    "Donnerstag",
+    "Freitag",
+    "Samstag",
+  ];
+
+  var months = [
+    "Januar",
+    "Februar",
+    "März",
+    "April",
+    "Mai",
+    "Juni",
+    "Juli",
+    "August",
+    "September",
+    "Oktober",
+    "November",
+    "Dezember",
+  ];
+
+  var currentDateString =
+    weekdays[currentDate.getDay()] +
+    ", " +
+    currentDate.getDate() +
+    ". " +
+    months[currentDate.getMonth()] +
+    " " +
+    currentDate.getFullYear();
+
+  var currentTimeString = currentDate.toLocaleTimeString().slice(0, -3);
 
   var templateConfig = {
     template: document.querySelector("#datetime-template"),
