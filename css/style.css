@@ -219,9 +219,12 @@ ul {
   flex: 0 0 22%;
   margin: 0.5rem;
   -webkit-box-shadow: 0px 0px 0 0.125rem #ffffff inset;
-     -moz-box-shadow: 0px 0px 0 0.125rem #ffffff inset;
-          box-shadow: 0px 0px 0 0.125rem #ffffff inset;
+  -moz-box-shadow: 0px 0px 0 0.125rem #ffffff inset;
+  box-shadow: 0px 0px 0 0.125rem #ffffff inset;
   border: 0.125rem solid #000000;
+  -webkit-border-radius: 0.25rem;
+     -moz-border-radius: 0.25rem;
+          border-radius: 0.25rem;
 }
 
 .scene::before {
