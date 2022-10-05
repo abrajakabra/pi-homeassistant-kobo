@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pi > HomeAssistant > Kobo</title>
+  <link rel="stylesheet" href="/css/normalize.css" />
+  <link rel="stylesheet" href="/css/materialdesignicons.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+  <button class="reload" onclick="location.reload();">Reload</button>
+  <style>
+    .reload {
+      position: absolute;
+      font-size: 1rem;
+      top: 0.5rem;
+      right: 0.5rem;
+    }
+  </style>
+  <main class="main">
+
+    <section id="weather-current">
+      <div class="slot"></div>
+      <template id="weather-current-template">
+        <% if (data) { %>
+          <% data.forEach(function(data){ %>
+            <div class="weather__icon">
+              <i class="mdi mdi-weather-<%= data.icon %>"></i>
+            </div>
+            <div class="weather__temperature">
+              <%= data.temperature %> °C
+            </div>
+          <% }); %>
+        <% } %>
+      </template>
+    </section>
+
+    <section id="weather-forecast">
+      <ul class="slot"></ul>
+      <template id="weather-forecast-template">
+        <% if (data) { %>
+          <% data.forEach(function(data){ %>
+            <li>
+              <div class="weather__icon">
+                <i class="mdi mdi-weather-<%= data.icon %>"></i>
+              </div>
+              <div class="weather__temperature">
+                <div class="weather__temperature">
+                  <%= data.temperature %> °C
+                </div>
+                <div class="weather__temperature-low">
+                  <i class="mdi mdi-arrow-down-bold"></i> <%= data.templow %> °C
+                </div>
+              </div>
+            </li>
+          <% }); %>
+        <% } %>
+      </template>
+    </section>
+
+    <section id="scenes">
+      <fieldset>
+        <legend>
+          Scenes
+        </legend>
+        <ul class="slot"></ul>
+        <template id="scene-template">
+          <% if (data) { %>
+            <% data.forEach(function(data){ %>
+              <li>
+                <i class="mdi <%= data.icon %>"></i>
+                <button type="button" value="<%= data.id %>">
+                  <%= data.name %>
+                </button>
+              </li>
+            <% }); %>
+          <% } %>
+        </template>
+      </fieldset>
+    </section>
+
+    <section id="switches">
+      <fieldset>
+        <legend>
+          Switches
+        </legend>
+        <ul class="slot"></ul>
+        <template id="switch-template">
+          <% if (data) { %>
+            <% data.forEach(function(data){ %>
+              <li>
+                <input id="checkbox_<%= data.id %>" type="checkbox" value="<%= data.id %>" data-checked="<%= data.checked %>" />
+                <label for="checkbox_<%= data.id %>">
+                  <i class="mdi <%= data.icon %>"></i>
+                  <%= data.name %>
+                </label>
+              </li>
+            <% }); %>
+          <% } %>
+        </template>
+      </fieldset>
+    </section>
+
+  </main>
+
+  <script src="/scripts/es5-shim.js"></script>
+  <script src="/scripts/he.js"></script>
+  <script src="/scripts/ejs.js"></script>
+  <script src="/scripts/promise.js"></script>
+  <script src="/scripts/fetch.js"></script>
+  <script src="/scripts/scripts.js"></script>
+
+</body>
+
+</html>

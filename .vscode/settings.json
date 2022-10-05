@@ -1,0 +1,8 @@
+{
+  "editor.defaultFormatter": "vscode.html-language-features",
+  "vetur.format.defaultFormatter.html": "none",
+  "html.format.enable": false,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
