@@ -29,12 +29,55 @@ function renderData() {
 renderData();
 
 setInterval(function () {
-  addDateTime();
+  fetch("/config.json")
+    .then(function (text) {
+      return text.json();
+    })
+    .then(function (json) {
+      window.homeAssistantAccessToken = json.home_assistant_access_token;
+      window.homeAssistantUrl = json.home_assistant_url;
+
+      fetch(window.homeAssistantUrl + "/api/states", {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + window.homeAssistantAccessToken,
+          "Content-Type": "application/json",
+        },
+      })
+        .then(function (text) {
+          return text.json();
+        })
+        .then(function (states) {
+          addDateTime();
+          addSwitches(states);
+        });
+    });
 }, 60000);
 
 setInterval(function () {
-  renderData();
-}, 300000);
+  fetch("/config.json")
+    .then(function (text) {
+      return text.json();
+    })
+    .then(function (json) {
+      window.homeAssistantAccessToken = json.home_assistant_access_token;
+      window.homeAssistantUrl = json.home_assistant_url;
+
+      fetch(window.homeAssistantUrl + "/api/states", {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + window.homeAssistantAccessToken,
+          "Content-Type": "application/json",
+        },
+      })
+        .then(function (text) {
+          return text.json();
+        })
+        .then(function (states) {
+          addWeather(states);
+        });
+    });
+}, 900000);
 
 function addSwitches(states) {
   var switches = states
