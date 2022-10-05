@@ -96,3 +96,13 @@ ul {
   margin-left: 0.5rem;
   font-size: 1.25rem;
 }
+
+.scenes,
+.switches {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 50%;
+     -moz-box-flex: 0;
+      -ms-flex: 0 0 50%;
+          flex: 0 0 50%;
+  max-width: 50%;
+}
