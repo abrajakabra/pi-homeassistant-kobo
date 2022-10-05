@@ -212,10 +212,10 @@ function addDateTime() {
     day: "numeric",
   });
 
-  var currentTimeString =
-    String(currentDate.getHours()).padStart(2, "0") +
-    ":" +
-    String(currentDate.getMinutes()).padStart(2, "0");
+  const currentTimeString = currentDate.toLocaleString("de-DE", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
   var templateConfig = {
     template: document.querySelector("#datetime-template"),
