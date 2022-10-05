@@ -212,7 +212,7 @@ function addDateTime() {
     day: "numeric",
   });
 
-  const currentTimeString = currentDate.toLocaleString("de-DE", {
+  var currentTimeString = currentDate.toLocaleString("de-DE", {
     hour: "2-digit",
     minute: "2-digit",
   });
