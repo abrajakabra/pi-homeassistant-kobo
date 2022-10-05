@@ -277,6 +277,8 @@ function addWeather(states) {
 function addDateTime() {
   var dateTimeEl = document.querySelector("#datetime");
 
+  var needsUpdate = true;
+
   var currentDate = new Date();
 
   var weekdays = [
@@ -315,13 +317,31 @@ function addDateTime() {
 
   var currentTimeString = currentDate.toTimeString().slice(0, 5);
 
+  var dateTime = {
+    date: currentDateString,
+    time: currentTimeString,
+  };
+
+  if (window.homeAssistantStates.hasOwnProperty("datetime")) {
+    if (window.homeAssistantStates.datetime !== JSON.stringify(dateTime)) {
+      needsUpdate = true;
+    } else {
+      needsUpdate = false;
+    }
+  } else {
+    window.homeAssistantStates.datetime = JSON.stringify(dateTime);
+  }
+
+  if (needsUpdate) {
+    window.homeAssistantStates.datetime = JSON.stringify(dateTime);
+  } else {
+    return;
+  }
+
   var templateConfig = {
     template: document.querySelector("#datetime-template"),
     element: dateTimeEl,
-    data: {
-      date: currentDateString,
-      time: currentTimeString,
-    },
+    data: dateTime,
   };
 
   renderTemplate(templateConfig);
