@@ -1,139 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pi > HomeAssistant > Kobo</title>
-  <link rel="stylesheet" href="/css/normalize.css" />
-  <link rel="stylesheet" href="/css/materialdesignicons.css" />
-  <link rel="stylesheet" href="/css/style.css" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pi > HomeAssistant > Kobo</title>
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/materialdesignicons.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
 
-<body>
-  <button class="reload" onclick="location.reload();">Reload</button>
-  <style>
-    .reload {
-      position: absolute;
-      font-size: 1rem;
-      top: 0.5rem;
-      right: 0.5rem;
-    }
-  </style>
-  <main class="main">
+  <body>
+    <button class="reload" onclick="location.reload();">Reload</button>
+    <style>
+      .reload {
+        position: absolute;
+        font-size: 1rem;
+        top: 0.5rem;
+        right: 0.5rem;
+      }
+    </style>
+    <main class="main">
 
-
-    <section id="weather" class="weather">
-
-      <div id="weather-current" class="weather__current">
+      <section id="datetime" class="datetime">
         <div class="slot"></div>
-        <template id="weather-current-template">
+        <template id="datetime-template">
           <% if (data) { %>
-            <div class="weather__icon">
-              <i class="mdi mdi-weather-<%= data.icon %>"></i>
-            </div>
-            <div class="weather__temperature">
-              <%= data.temperature %> °C
+            <i class="mdi mdi-clock"></i>
+            <div class="datetime__content">
+              <div class="datetime__time">
+                <%= data.time %>
+              </div>
+              <div class="datetime__date">
+                <%= data.date %>
+              </div>
             </div>
           <% } %>
         </template>
-      </div>
+      </section>
 
-      <div id="weather-forecast" class="weather__forecast">
-        <ul class="slot"></ul>
-        <template id="weather-forecast-template">
-          <% if (data) { %>
-            <% data.forEach(function(data){ %>
-              <li>
-                <div class="weather__icon">
-                  <i class="mdi mdi-weather-<%= data.icon %>"></i>
-                </div>
-                <div class="weather__temperature">
-                  <div class="weather__temperature-high">
-                    <%= data.temperature %> °C
+      <section id="weather" class="weather">
+
+        <div id="weather-current" class="weather__current">
+          <div class="slot"></div>
+          <template id="weather-current-template">
+            <% if (data) { %>
+              <div class="weather__icon">
+                <i class="mdi mdi-weather-<%= data.icon %>"></i>
+              </div>
+              <div class="weather__temperature">
+                <%= data.temperature %> °C
+              </div>
+            <% } %>
+          </template>
+        </div>
+
+        <div id="weather-forecast" class="weather__forecast">
+          <ul class="slot"></ul>
+          <template id="weather-forecast-template">
+            <% if (data) { %>
+              <% data.forEach(function(data){ %>
+                <li>
+                  <div class="weather__icon">
+                    <i class="mdi mdi-weather-<%= data.icon %>"></i>
                   </div>
-                  <div class="weather__temperature-low">
-                    <i class="mdi mdi-arrow-down-bold"></i> <%= data.templow %> °C
+                  <div class="weather__temperature">
+                    <div class="weather__temperature-high">
+                      <%= data.temperature %> °C
+                    </div>
+                    <div class="weather__temperature-low">
+                      <i class="mdi mdi-arrow-down-bold"></i> <%= data.templow %> °C
+                    </div>
                   </div>
-                </div>
-              </li>
-            <% }); %>
-          <% } %>
-        </template>
-      </div>
+                </li>
+              <% }); %>
+            <% } %>
+          </template>
+        </div>
 
-    </section>
+      </section>
 
-    <section id="datetime" class="datetime">
-      <div class="slot"></div>
-      <template id="datetime-template">
-        <% if (data) { %>
-          <i class="mdi mdi-clock"></i>
-          <div class="datetime__content">
-            <div class="datetime__time">
-              <%= data.time %>
-            </div>
-            <div class="datetime__date">
-              <%= data.date %>
-            </div>
-          </div>
-        <% } %>
-      </template>
-    </section>
-
-    <section id="scenes" class="scenes">
-      <fieldset>
-        <legend>
-          Scenes
-        </legend>
+      <section id="scenes" class="scenes">
         <ul class="slot"></ul>
         <template id="scene-template">
           <% if (data) { %>
             <% data.forEach(function(data){ %>
-              <li>
-                <i class="mdi <%= data.icon %>"></i>
-                <button type="button" value="<%= data.id %>">
-                  <%= data.name %>
+              <li class="scene">
+                <button class="scene__content" type="button" value="<%= data.id %>">
+                  <i class="mdi <%= data.icon %>"></i>
+                    <%= data.name %>
+                  <div class="scene__name"></div>
                 </button>
               </li>
             <% }); %>
           <% } %>
         </template>
-      </fieldset>
-    </section>
+      </section>
 
-    <section id="switches" class="switches">
-      <fieldset>
-        <legend>
-          Switches
-        </legend>
+      <section id="switches" class="switches">
         <ul class="slot"></ul>
         <template id="switch-template">
           <% if (data) { %>
             <% data.forEach(function(data){ %>
-              <li>
-                <input id="checkbox_<%= data.id %>" type="checkbox" value="<%= data.id %>" data-checked="<%= data.checked %>" />
-                <label for="checkbox_<%= data.id %>">
-                  <i class="mdi <%= data.icon %>"></i>
-                  <%= data.name %>
+              <li class="switch">
+                <i class="mdi <%= data.icon %>"></i>
+                <label class="switch__box" for="checkbox_<%= data.id %>">
+                  <input id="checkbox_<%= data.id %>" type="checkbox" value="<%= data.id %>" data-checked="<%= data.checked %>" />
+                  <span class="switch__slider"></span>
+                  <!-- <%= data.name %> -->
                 </label>
               </li>
             <% }); %>
           <% } %>
         </template>
-      </fieldset>
-    </section>
+      </section>
 
-  </main>
+    </main>
 
-  <script src="/scripts/es5-shim.js"></script>
-  <script src="/scripts/he.js"></script>
-  <script src="/scripts/ejs.js"></script>
-  <script src="/scripts/promise.js"></script>
-  <script src="/scripts/fetch.js"></script>
-  <script src="/scripts/scripts.js"></script>
+    <script src="/scripts/es5-shim.js"></script>
+    <script src="/scripts/he.js"></script>
+    <script src="/scripts/ejs.js"></script>
+    <script src="/scripts/promise.js"></script>
+    <script src="/scripts/fetch.js"></script>
+    <script src="/scripts/scripts.js"></script>
 
-</body>
+  </body>
 
 </html>
