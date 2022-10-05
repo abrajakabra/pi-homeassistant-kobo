@@ -23,46 +23,65 @@
   </style>
   <main class="main">
 
-    <section id="weather-current">
-      <div class="slot"></div>
-      <template id="weather-current-template">
-        <% if (data) { %>
-          <% data.forEach(function(data){ %>
+
+    <section id="weather" class="weather">
+
+      <div id="weather-current">
+        <div class="slot"></div>
+        <template id="weather-current-template">
+          <% if (data) { %>
             <div class="weather__icon">
               <i class="mdi mdi-weather-<%= data.icon %>"></i>
             </div>
             <div class="weather__temperature">
               <%= data.temperature %> °C
             </div>
-          <% }); %>
-        <% } %>
-      </template>
-    </section>
+          <% } %>
+        </template>
+      </div>
 
-    <section id="weather-forecast">
-      <ul class="slot"></ul>
-      <template id="weather-forecast-template">
-        <% if (data) { %>
-          <% data.forEach(function(data){ %>
-            <li>
-              <div class="weather__icon">
-                <i class="mdi mdi-weather-<%= data.icon %>"></i>
-              </div>
-              <div class="weather__temperature">
+      <div id="weather-forecast">
+        <ul class="slot"></ul>
+        <template id="weather-forecast-template">
+          <% if (data) { %>
+            <% data.forEach(function(data){ %>
+              <li>
+                <div class="weather__icon">
+                  <i class="mdi mdi-weather-<%= data.icon %>"></i>
+                </div>
                 <div class="weather__temperature">
-                  <%= data.temperature %> °C
+                  <div class="weather__temperature">
+                    <%= data.temperature %> °C
+                  </div>
+                  <div class="weather__temperature-low">
+                    <i class="mdi mdi-arrow-down-bold"></i> <%= data.templow %> °C
+                  </div>
                 </div>
-                <div class="weather__temperature-low">
-                  <i class="mdi mdi-arrow-down-bold"></i> <%= data.templow %> °C
-                </div>
-              </div>
-            </li>
-          <% }); %>
+              </li>
+            <% }); %>
+          <% } %>
+        </template>
+      </div>
+
+    </section>
+
+    <section id="datetime" class="timedate">
+      <div class="slot"></div>
+      <template id="datetime-template">
+        <% if (data) { %>
+          <div class="datetime__time">
+            <i class="mdi mdi-clock"></i>
+            <%= data.time %>
+          </div>
+          <div class="datetime__date">
+            <i class="mdi mdi-calendar"></i>
+            <%= data.date %>
+          </div>
         <% } %>
       </template>
     </section>
 
-    <section id="scenes">
+    <section id="scenes" class="scenes">
       <fieldset>
         <legend>
           Scenes
@@ -83,7 +102,7 @@
       </fieldset>
     </section>
 
-    <section id="switches">
+    <section id="switches" class="switches">
       <fieldset>
         <legend>
           Switches

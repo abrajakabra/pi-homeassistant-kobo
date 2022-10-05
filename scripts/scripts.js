@@ -18,6 +18,7 @@ fetch("/config.json")
       })
       .then(function (states) {
         console.log(states);
+        addDateTime();
         addWeather(states);
         addScenes(states);
         addSwitches(states);
@@ -187,7 +188,7 @@ function addWeather(states) {
   var templateConfigWeatherCurrent = {
     template: document.querySelector("#weather-current-template"),
     element: weatherCurrentEl,
-    data: weather,
+    data: weather[0],
   };
 
   var templateConfigWeatherForecast = {
@@ -200,6 +201,34 @@ function addWeather(states) {
   renderTemplate(templateConfigWeatherForecast);
 }
 
+function addDateTime() {
+  var dateTimeEl = document.querySelector("#datetime");
+
+  var currentDate = new Date();
+  var currentDateString = currentDate.toLocaleDateString("de-DE", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  var currentTimeString =
+    String(currentDate.getHours()).padStart(2, "0") +
+    ":" +
+    String(currentDate.getMinutes()).padStart(2, "0");
+
+  var templateConfig = {
+    template: document.querySelector("#datetime-template"),
+    element: dateTimeEl,
+    data: {
+      date: currentDateString,
+      time: currentTimeString,
+    },
+  };
+
+  renderTemplate(templateConfig);
+}
+
 function renderTemplate(config) {
   var templateRaw = config.template.innerHTML.toString();
 
@@ -208,8 +237,3 @@ function renderTemplate(config) {
   var html = ejs.render(templateFinal, { data: config.data });
   config.element.querySelector(".slot").innerHTML = html;
 }
-
-var userAgentEl = document.createElement("p");
-userAgentEl.innerHTML = navigator.userAgent;
-
-document.body.appendChild(userAgentEl);

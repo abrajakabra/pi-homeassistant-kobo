@@ -14,5 +14,6 @@
         "ie >= 9",
         "> 5%"
     ]
-}
+  },
+  "autoprefixer.formatOnSave": true
 }
