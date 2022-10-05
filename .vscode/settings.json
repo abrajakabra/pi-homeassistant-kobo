@@ -4,5 +4,15 @@
   "html.format.enable": false,
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "autoprefixer.options": {
+    "browsers": [
+        "last 4 versions",
+        "ie >= 9",
+        "> 5%"
+    ]
+}
 }
