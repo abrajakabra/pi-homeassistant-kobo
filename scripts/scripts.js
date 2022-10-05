@@ -240,7 +240,7 @@ function addDateTime() {
     " " +
     currentDate.getFullYear();
 
-  var currentTimeString = currentDate.toLocaleTimeString().slice(0, -3);
+  var currentTimeString = currentDate.toTimeString().slice(0, 5);
 
   var templateConfig = {
     template: document.querySelector("#datetime-template"),
