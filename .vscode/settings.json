@@ -10,9 +10,7 @@
   },
   "autoprefixer.options": {
     "browsers": [
-        "last 4 versions",
-        "ie >= 9",
-        "> 5%"
+        "Firefox >= 20"
     ]
   },
   "autoprefixer.formatOnSave": true
