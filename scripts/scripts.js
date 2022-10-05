@@ -6,6 +6,7 @@ function renderData() {
     .then(function (json) {
       window.homeAssistantAccessToken = json.home_assistant_access_token;
       window.homeAssistantUrl = json.home_assistant_url;
+      window.homeAssistantStates = {};
 
       fetch(window.homeAssistantUrl + "/api/states", {
         method: "GET",
@@ -52,7 +53,7 @@ setInterval(function () {
           addSwitches(states);
         });
     });
-}, 60000);
+}, 1000);
 
 setInterval(function () {
   fetch("/config.json")
@@ -80,6 +81,8 @@ setInterval(function () {
 }, 900000);
 
 function addSwitches(states) {
+  var needsUpdate = true;
+
   var switches = states
     .filter(function (state) {
       return (
@@ -102,6 +105,22 @@ function addSwitches(states) {
         icon: icon,
       };
     });
+
+  if (window.homeAssistantStates.hasOwnProperty("switches")) {
+    if (window.homeAssistantStates.switches !== JSON.stringify(switches)) {
+      needsUpdate = true;
+    } else {
+      needsUpdate = false;
+    }
+  } else {
+    window.homeAssistantStates.switches = JSON.stringify(switches);
+  }
+
+  if (needsUpdate) {
+    window.homeAssistantStates.switches = JSON.stringify(switches);
+  } else {
+    return;
+  }
 
   var switchesEl = document.querySelector("#switches");
 
