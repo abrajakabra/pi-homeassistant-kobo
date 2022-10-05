@@ -218,6 +218,11 @@ ul {
   -ms-flex: 0 0 22%;
   flex: 0 0 22%;
   margin: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+     -moz-border-radius: 0.5rem;
+          border-radius: 0.5rem;
+  outline: 0.125rem solid #6d6d6d;
+  outline-offset: 0.125rem;
 }
 
 .scene::before {
