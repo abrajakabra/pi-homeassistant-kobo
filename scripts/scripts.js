@@ -192,7 +192,7 @@ function addScenes(states) {
             .then(function (states) {
               addSwitches(states);
             });
-        }, 250);
+        }, 500);
       });
     });
   }
