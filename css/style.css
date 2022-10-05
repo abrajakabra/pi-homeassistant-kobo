@@ -26,6 +26,7 @@ body {
   height: 100vh;
   padding: 2rem;
   font-size: 1rem;
+  font-family: sans-serif;
 }
 
 h1 {
@@ -44,10 +45,35 @@ ul {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .weather {
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 100%;
-  flex: 0 0 100%;
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.datetime .slot {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.datetime .mdi {
+  font-size: 6.5rem;
+  opacity: 0.8;
+}
+
+.datetime__time {
+  font-size: 3rem;
+}
+
+.datetime__date {
+  margin-left: 0.5rem;
+  font-size: 1.25rem;
 }

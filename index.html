@@ -65,17 +65,18 @@
 
     </section>
 
-    <section id="datetime" class="timedate">
+    <section id="datetime" class="datetime">
       <div class="slot"></div>
       <template id="datetime-template">
         <% if (data) { %>
-          <div class="datetime__time">
-            <i class="mdi mdi-clock"></i>
-            <%= data.time %>
-          </div>
-          <div class="datetime__date">
-            <i class="mdi mdi-calendar"></i>
-            <%= data.date %>
+          <i class="mdi mdi-clock"></i>
+          <div class="datetime__content">
+            <div class="datetime__time">
+              <%= data.time %>
+            </div>
+            <div class="datetime__date">
+              <%= data.date %>
+            </div>
           </div>
         <% } %>
       </template>
