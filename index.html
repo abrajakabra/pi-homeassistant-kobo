@@ -98,24 +98,6 @@
         </template>
       </section>
 
-      <section id="switches" class="switches">
-        <ul class="slot"></ul>
-        <template id="switch-template">
-          <% if (data) { %>
-            <% data.forEach(function(data){ %>
-              <li class="switch">
-                <i class="mdi <%= data.icon %>"></i>
-                <label class="switch__box" for="checkbox_<%= data.id %>">
-                  <input id="checkbox_<%= data.id %>" type="checkbox" value="<%= data.id %>" data-checked="<%= data.checked %>" />
-                  <span class="switch__slider"></span>
-                  <!-- <%= data.name %> -->
-                </label>
-              </li>
-            <% }); %>
-          <% } %>
-        </template>
-      </section>
-
     </main>
 
     <script src="/scripts/es5-shim.js"></script>
