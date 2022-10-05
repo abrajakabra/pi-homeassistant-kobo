@@ -29,8 +29,12 @@ function renderData() {
 renderData();
 
 setInterval(function () {
-  renderData();
+  addDateTime();
 }, 60000);
+
+setInterval(function () {
+  renderData();
+}, 300000);
 
 function addSwitches(states) {
   var switches = states
