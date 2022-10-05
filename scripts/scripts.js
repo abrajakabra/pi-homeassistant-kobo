@@ -1,9 +1,3 @@
-renderData();
-
-setInterval(() => {
-  renderData();
-}, 60000);
-
 function renderData() {
   fetch("/config.json")
     .then(function (text) {
@@ -32,6 +26,12 @@ function renderData() {
         });
     });
 }
+
+renderData();
+
+setInterval(() => {
+  renderData();
+}, 60000);
 
 function addSwitches(states) {
   var switches = states
